@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação de Confete</title>
+
+    <style>
+          
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #bec2a64d;
+            height: 100vh;
+        }
+        .container{
+            position: relative;
+
+            width: 300px;
+            height: 220px;
+            margin: 100px auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .moldura-simples {
+            border: 10px solid #3b1212;
+            box-shadow: 50px 4px 15px #2a423aa6(54, 59, 61, 0.603);
+            padding: 5px;
+            background-color: #FFD700(78.85% -44.23 73.79 / 0.541);
+            z-index: 10;
+        }
+
+        .moldura-simples img {
+            display: block;
+            width: 300px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .confetti-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 20px;
+            opacity: 0.9;
+
+            /* Forma do confete */
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+
+            /* Cor padrão */
+            background: var(--confetti-color);
+
+            /* Animação */
+            animation: confetti-fall var(--fall-duration) linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div align="center">
+          <img src="cid:foto_aniversario" width="300" height="200"
+    </div>
+    
+    
+
+    <pre><h1 align="center" style="font-family:Arial;">Feliz Aniversario!! {nascimentos["nome"]}
+    Quero te desejar muita prosperidade, amor, 
+    fartura, saúde e alegria para esse novo ciclo!!
+
+    Pode contar comigo sempre ❤
+    </h1></pre>
+
+    <script>
+        const confettiWrapper = document.querySelector('.confetti-wrapper');
+
+        // Criar 50 confetes
+        for (let i = 0; i < 50; i++) {
+
+            const confetti = document.createElement('div');
+
+            confetti.classList.add('confetti-piece');
+
+            // posição horizontal aleatória
+            confetti.style.left = `${Math.random() * 100}%`;
+
+            // duração aleatória
+            confetti.style.setProperty(
+                '--fall-duration',
+                `${Math.random() * 3 + 3}s`
+            );
+
+            // atraso aleatório
+            confetti.style.animationDelay = `${Math.random() * 5}s`;
+
+            // cor aleatória
+            confetti.style.setProperty(
+                '--confetti-color',
+                getRandomColor()
+            );
+
+            confettiWrapper.appendChild(confetti);
+        }
+
+        function getRandomColor() {
+
+            const colors = [
+                '#ff6347',
+                '#ffa500',
+                '#32cd32',
+                '#1e90ff',
+                '#ff69b4',
+                '#ffd700',
+                '#9400d3'
+            ];
+
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
